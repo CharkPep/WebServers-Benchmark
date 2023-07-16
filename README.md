@@ -37,17 +37,14 @@ Testing endpoint performance with some point of production-level setup
 | Fastify | 1998.09 | 736 | 3695.95 | ~110 | ~1.6 | 19k |
 | Express.js  | 1727.24 | 650 | 4739.15 | ~110 | ~1.6 | 11k |
 | Koa.js  | 1955.23 | 690 | 5228.63 | ~111 | ~1.7  | 4k |
-| Nest.js  |  |
-| Raw HTTP(e.c standart http library)  | Content Cell  |
-| Nuxt   | Content Cell  |
-| Hapi.js  | Content Cell  |
-| Feather.js  | Content Cell  |
-| Loopback.js  | Content Cell  |
-| Adonis.js   | Content Cell  |
-| Derby.js   | Content Cell  |
-| Next.js  | Content Cell  |
-| Total.js  | Content Cell  |
-| Sails.js  | Content Cell  |
-| tRPC Server   | Content Cell  |
+| Nest.js  | 1552.57 | 662 kB | 5585.43 | ~111 | ~1.6 | 4k |
+| Raw HTTP(http library)  | 2136 | 754 | 5155.2 | ~109 | ~1.6  | 3k |
+| Nuxt   |  |
+| Hapi.js  | 1784.34 | 741 | 5320.62 | 111 | 1.8 | 4k |
+| Loopback.js  | 1171.02 | 525 | 6122.69 | | | 5k |
+| Adonis.js   |   |
+| Next.js  | 369.38 | 153 | 12689.67 |  |  | 2k | 
+| Sails.js  |  |
+| tRPC Server-OpenApi | Content Cell  |
 
 *CPU, RAM just average value get using top command
