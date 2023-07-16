@@ -14,7 +14,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
+        while (_) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -40,7 +40,7 @@ var bannersQuery_1 = require("../lib/bannersQuery");
 var connetMongo_1 = require("../config/connetMongo");
 var mongoose_1 = require("mongoose");
 var cluster = require("cluster");
-var clusterWorkerSize = 4;
+var clusterWorkerSize = 1;
 var Koa = require('koa');
 var app = new Koa();
 app.use(function (ctx) { return __awaiter(void 0, void 0, void 0, function () {
@@ -50,7 +50,7 @@ app.use(function (ctx) { return __awaiter(void 0, void 0, void 0, function () {
             case 0:
                 if (!(ctx.request.url == '/api/banner' && ctx.request.method == 'GET')) return [3 /*break*/, 2];
                 ctx.set('Content-Type', 'application/json');
-                return [4 /*yield*/, (0, bannersQuery_1.getBanner)()];
+                return [4 /*yield*/, bannersQuery_1.getBanner()];
             case 1:
                 queryRes = _a.sent();
                 ctx.body = JSON.stringify(queryRes);
@@ -60,10 +60,10 @@ app.use(function (ctx) { return __awaiter(void 0, void 0, void 0, function () {
     });
 }); });
 function start() {
-    (0, connetMongo_1.default)().then(function () {
+    connetMongo_1.default().then(function () {
         app.listen(5000);
         // console.log(data)
-        console.log('Server is running at http://127.0.0.1:5000, worker', cluster.worker.id);
+        console.log('Server is running at http://127.0.0.1:5000, worker');
     });
 }
 if (clusterWorkerSize > 1) {

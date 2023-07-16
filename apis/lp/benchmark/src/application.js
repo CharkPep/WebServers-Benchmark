@@ -3,20 +3,19 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.App = void 0;
 var boot_1 = require("@loopback/boot");
+var core_1 = require("@loopback/core");
+exports.ApplicationConfig = core_1.ApplicationConfig;
 var rest_explorer_1 = require("@loopback/rest-explorer");
 var repository_1 = require("@loopback/repository");
 var rest_1 = require("@loopback/rest");
@@ -50,6 +49,6 @@ var App = /** @class */ (function (_super) {
         return _this;
     }
     return App;
-}((0, boot_1.BootMixin)((0, service_proxy_1.ServiceMixin)((0, repository_1.RepositoryMixin)(rest_1.RestApplication)))));
+}(boot_1.BootMixin(service_proxy_1.ServiceMixin(repository_1.RepositoryMixin(rest_1.RestApplication)))));
 exports.App = App;
 //# sourceMappingURL=application.js.map

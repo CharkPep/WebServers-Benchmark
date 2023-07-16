@@ -9,6 +9,6 @@ var BannerSchema = new mongoose_1.Schema({
     shown: { type: Number, required: true, default: 0 },
     percentage: { type: Number, required: true },
 });
-var Banner = (0, mongoose_1.model)('Banners', BannerSchema);
+var Banner = mongoose_1.model('Banners', BannerSchema);
 exports.default = Banner;
 //# sourceMappingURL=Banner.js.map

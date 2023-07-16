@@ -17,5 +17,5 @@ var Application_1 = require("@ioc:Adonis/Core/Application");
 | 2. We must ignore this file to avoid getting into an infinite loop
 |
 */
-exports.default = (0, standalone_1.listDirectoryFiles)(__dirname, Application_1.default.appRoot, ['./commands/index']);
+exports.default = standalone_1.listDirectoryFiles(__dirname, Application_1.default.appRoot, ['./commands/index']);
 //# sourceMappingURL=index.js.map

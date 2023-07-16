@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getBanner = void 0;
 var Banner_1 = require("../models/Banner");
 function getBanner() {
     var randomPercentage = Math.random();

@@ -14,7 +14,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
+        while (_) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -41,14 +41,14 @@ var connetMongo_1 = require("../config/connetMongo");
 var mongoose = require("mongoose");
 var cluster = require("cluster");
 var os = require('os');
-var clusterWorkerSize = 4;
+var clusterWorkerSize = 1;
 var http = require('http');
 var server = http.createServer(function (req, res) {
     // console.log(req.url)
     if (req.method === 'GET' && req.url === '/api/banner') {
         // res.writeHead(200, { 'Content-Type': 'application/json' });
         // console.time(`Request-${cluster.worker.id}`)
-        (0, bannersQuery_1.getBanner)().then(function (queryRes) {
+        bannersQuery_1.getBanner().then(function (queryRes) {
             res.end(JSON.stringify(queryRes));
             // console.timeEnd(`Request-${cluster.worker.id}`)
         });
@@ -59,10 +59,10 @@ var server = http.createServer(function (req, res) {
     }
 });
 function start() {
-    (0, connetMongo_1.default)().then(function () {
+    connetMongo_1.default().then(function () {
         server.listen(5000, '127.0.0.1', function () {
             // console.log(data)
-            console.log('Server is running at http://127.0.0.1:5000, worker', cluster.worker.id);
+            console.log('Server is running at http://127.0.0.1:5000');
         });
     });
 }

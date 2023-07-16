@@ -17,7 +17,7 @@ var config_1 = require("@adonisjs/core/build/config");
 | defined inside `contracts` directory.
 |
 */
-exports.default = (0, config_1.hashConfig)({
+exports.default = config_1.hashConfig({
     /*
     |--------------------------------------------------------------------------
     | Default hasher

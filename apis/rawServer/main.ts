@@ -3,7 +3,7 @@ import connectDb from "../config/connetMongo";
 import * as mongoose from "mongoose";
 const cluster = require("cluster");
 const os = require('os')
-const clusterWorkerSize = 4;
+const clusterWorkerSize = 1;
 const http = require('http');
 
 const server = http.createServer((req, res) => {
@@ -26,7 +26,7 @@ function start(){
     connectDb().then(() => {
         server.listen(5000, '127.0.0.1', () => {
             // console.log(data)
-            console.log('Server is running at http://127.0.0.1:5000, worker', cluster.worker.id);
+            console.log('Server is running at http://127.0.0.1:5000');
         });
     })
 }

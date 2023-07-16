@@ -2,7 +2,7 @@
 import connectDb from "../config/connetMongo";
 import mongoose from "mongoose";
 const cluster = require("cluster");
-const clusterWorkerSize = 4;
+const clusterWorkerSize = 1;
 const Koa = require('koa');
 const app = new Koa();
 
@@ -18,7 +18,7 @@ function start(){
     connectDb().then(() => {
             app.listen(5000);
             // console.log(data)
-            console.log('Server is running at http://127.0.0.1:5000, worker', cluster.worker.id);
+            console.log('Server is running at http://127.0.0.1:5000, worker');
         });
 }
 

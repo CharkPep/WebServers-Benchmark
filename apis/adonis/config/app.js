@@ -6,7 +6,6 @@
  * file.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validator = exports.profiler = exports.logger = exports.http = exports.appKey = void 0;
 var proxy_addr_1 = require("proxy-addr");
 var Env_1 = require("@ioc:Adonis/Core/Env");
 /*

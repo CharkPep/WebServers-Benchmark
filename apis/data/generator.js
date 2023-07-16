@@ -14,7 +14,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
+        while (_) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -66,7 +66,7 @@ function run(number) {
                     for (i = 0; i < number; i++) {
                         bannerObj = new Banner_1.default({
                             description: "<empty>",
-                            name: "ad_".concat(i + 1),
+                            name: "ad_" + (i + 1),
                             onClickLink: "http://google.com",
                             price: Math.random() * 1000 + 1,
                             percentage: 0,
@@ -83,7 +83,7 @@ function run(number) {
         });
     });
 }
-(0, connetMongo_1.default)().then(function () {
+connetMongo_1.default().then(function () {
     console.time('Saved');
     run(NUMBERTOGENERATE).then(function () {
         console.timeEnd('Saved');

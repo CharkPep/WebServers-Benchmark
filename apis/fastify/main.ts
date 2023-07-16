@@ -1,9 +1,11 @@
-﻿import Fastify from 'fastify'
+﻿
+
+const Fastify = require("fastify");
 const cluster = require("cluster");
 import * as mongoose from "mongoose";
 import {getBanner} from "../lib/bannersQuery";
 import connectDb from "../config/connetMongo";
-const clusterWorkerSize = 4;
+const clusterWorkerSize = 1;
 require('dotenv').config({
     "path" : '../.env'
 })
@@ -19,7 +21,7 @@ const start = () => {
     connectDb().then(() =>{
         try {
             fastify.listen({ port: 5000 })
-            console.log('Server is running at http://127.0.0.1:5000, worker', cluster.worker.id);
+            console.log('Server is running at http://127.0.0.1:5000');
     
         } catch (err) {
             fastify.log.error(err)

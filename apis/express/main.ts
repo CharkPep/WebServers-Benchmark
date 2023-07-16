@@ -3,7 +3,7 @@ import connectDb from "../config/connetMongo";
 import mongoose from "mongoose";
 const cluster = require("cluster");
 const os = require('os')
-const clusterWorkerSize = 4;
+const clusterWorkerSize = 1;
 const app = require('express')()
 const PORT = 5000
 
@@ -20,7 +20,7 @@ app.get('/api/banner', async function (req, res) {
 function start(){
     connectDb().then(() => {
         app.listen(PORT, () => {
-            console.log('Server is running at http://127.0.0.1:5000, worker', cluster.worker.id);
+            console.log('Server is running at http://127.0.0.1:5000, worker');
         })
     })
 }

@@ -16,7 +16,7 @@ var source_map_support_1 = require("source-map-support");
 var standalone_1 = require("@adonisjs/core/build/standalone");
 var connetMongo_1 = require("./config/connetMongo");
 source_map_support_1.default.install({ handleUncaughtExceptions: false });
-(0, connetMongo_1.default)();
+connetMongo_1.default();
 new standalone_1.Ignitor(__dirname)
     .httpServer()
     .start();
