@@ -4,7 +4,8 @@ import connectDb from "../config/connetMongo";
 
 export function getBanner() {
     let randomPercentage = Math.random()
-    return Banner.findOne({ percentage : { $gte : randomPercentage }})
+    return Banner
+        .find({ percentage : { $gte : randomPercentage }}).limit(1)
 }
 
 // connectDb().then(() => {

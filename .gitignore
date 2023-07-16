@@ -7,4 +7,5 @@
 out
 gen
 .env
-apis/node_modules
+**/node_modules/
+/node_modules

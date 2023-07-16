@@ -1,19 +1,19 @@
-﻿import {Banner} from "../../types/bannerType";
-import {getBanner} from "../lib/bannersQuery";
+﻿import {getBanner} from "../lib/bannersQuery";
 import connectDb from "../config/connetMongo";
 import * as mongoose from "mongoose";
 const cluster = require("cluster");
 const os = require('os')
-const clusterWorkerSize = os.cpus().length;
+const clusterWorkerSize = 4;
 const http = require('http');
 
 const server = http.createServer((req, res) => {
     // console.log(req.url)
     if (req.method === 'GET' && req.url === '/api/banner') {
         // res.writeHead(200, { 'Content-Type': 'application/json' });
-        // console.log('Got request')
+        // console.time(`Request-${cluster.worker.id}`)
         getBanner().then((queryRes) => {
             res.end(JSON.stringify(queryRes));
+            // console.timeEnd(`Request-${cluster.worker.id}`)
         })
     }   
     else {
