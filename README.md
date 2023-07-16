@@ -1,33 +1,44 @@
 # JS-WebServers-Benchmark
-
-So I benched some of the most popular JS frameworks.
-
-There are two tests performed, one on my local machine (CPU: Ryzen 5 5600H, RAM: 20GB) and one with a more production-level environment.
-
-The test will be performed on one endpoint that returns "ad", for example 
-
-```JavaScript
-  {
-    name : "ad_513510"
-    price : 1000.9989583493276
-    description : "<empty>"
-    onClickLink :"http://google.com"
-    shown :0
-  }
+* VM Ubuntu 20.04 2 Core 16 RAM, location Poland
+* MongoDb M30, location Warsaw
+* Server Nginx
+* One NodeJs instance
+* Local machine location about 1k km from server
+* Using [autocannon](https://github.com/mcollina/autocannon/tree/master) with parameters `-c 1000 -w 10 -p 5 -d 180` 2 runs
+  
+Nginx Config:
+```
+server {
+    listen 80 fastopen=256;
+    server_name _;
+    keepalive_timeout 10;
+    location / {
+        proxy_pass http://localhost:5000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+```
+Sysctl config:
+```
+net.ipv4.ip_local_port_range = 1024 65000
+net.ipv4.tcp_tw_reuse = 1
+net.ipv4.tcp_fin_timeout = 15
+net.core.somaxconn = 4096
+net.ipv4.tcp_wmem = 30240 87380 12582912
+net.ipv4.tcp_rmem = 30240 87380 12582912
 ```
 
-Of course, this is not an ideal ad service simulation, but I decided to keep it simple and stick with it.
+Testing endpoint performance with some point of production-level setup
 
-Local environment
-
-| Server  | Req/sec | Bytes/sec | Latency m/s | CPU % | RAM Mb | 
-| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| Server  | Req/sec avg | KBytes/sec avg | Latency m/s avg | CPU avg % | RAM | Timeouts |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| Fastify | 1998.09 | 736 | 3695.95 | ~110 | ~1.6 | 19k |
+| Express.js  | 1727.24 | 650 | 4739.15 | ~110 | ~1.6 | 11k |
+| Koa.js  | 1955.23 | 690 | 5228.63 | ~111 | ~1.7  | 4k |
+| Nest.js  |  |
 | Raw HTTP(e.c standart http library)  | Content Cell  |
-| Express.js  | Content Cell  |
-| Koa.js  | Content Cell  |
-| Meteor.js  | Content Cell  |
-| Nest.js  | Content Cell  |
-| Fastify  | Content Cell  |
 | Nuxt   | Content Cell  |
 | Hapi.js  | Content Cell  |
 | Feather.js  | Content Cell  |
@@ -39,4 +50,4 @@ Local environment
 | Sails.js  | Content Cell  |
 | tRPC Server   | Content Cell  |
 
-
+*CPU, RAM just average value get using top command
