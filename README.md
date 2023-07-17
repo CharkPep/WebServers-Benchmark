@@ -39,12 +39,18 @@ Testing endpoint performance with some point of production-level setup
 | Koa.js  | 1955.23 | 690 | 5228.63 | ~111 | ~1.7  | 4k |
 | Nest.js  | 1552.57 | 662 kB | 5585.43 | ~111 | ~1.6 | 4k |
 | Raw HTTP(http library)  | 2136 | 754 | 5155.2 | ~109 | ~1.6  | 3k |
-| Nuxt   |  |
 | Hapi.js  | 1784.34 | 741 | 5320.62 | 111 | 1.8 | 4k |
-| Loopback.js  | 1171.02 | 525 | 6122.69 | | | 5k |
-| Adonis.js   |   |
-| Next.js  | 369.38 | 153 | 12689.67 |  |  | 2k | 
-| Sails.js  |  |
-| tRPC Server-OpenApi | Content Cell  |
-
+| Loopback.js | 1171.02 | 525 | 6122.69 | | | 5k |
+| Next.js | 1102.03 | 496 | 12689.67 |  |  | 2k | 
+| Sails.js | 1307.56 | 553 | 30573.02 | | | 5k |
+| tRPC OpenApi | 1451.43 | 527 | 31046.72 | ~110 | ~2 | 3k |
+ 
 *CPU, RAM just average value get using top command
+
+Conclusion:
+
+* The best way to optimize the server is to ship fewer bits to the client
+* Most of the server load is bounded to i/o load, which, lucky for us node handles pretty well because of its event loop
+* From my tests it's a great idea to tune your server, though in this case there was not much to optimize(p.s I got an additional 100+ RPS), but in cases with long-lived or big content size it's important and can boost your performance 
+* Locate the server closer to the client is also important because it decreases initial latency
+* Locate DB as close as possible to the server 
