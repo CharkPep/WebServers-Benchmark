@@ -56,4 +56,5 @@ Conclusion:
 * Most of the server load is bounded to i/o load, which, lucky for us node handles pretty well because of its event loop
 * From my tests it's a great idea to tune your server, though in this case there was not much to optimize(p.s I got an additional 100+ RPS), but in cases with long-lived or big content size it's important and can boost your performance 
 * Locate the server closer to the client is also important because it decreases initial latency
-* Locate DB as close as possible to the server 
+* Locate DB as close as possible to the server
+* btw surprise for me, but fastify claims are true about simple RPS(see table), which was kinda shocking for me, why express so slow when it comes to just sending a responses??
